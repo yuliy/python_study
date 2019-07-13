@@ -69,6 +69,7 @@ class KnownValues(unittest.TestCase):
             result = roman_numbers.to_roman(integer)
             self.assertEqual(numeral, result)
 
+
 class ToRomanBadInput(unittest.TestCase):
     def test_too_large(self):
         '''to_roman should fail with large input'''
@@ -81,6 +82,11 @@ class ToRomanBadInput(unittest.TestCase):
     def test_negative(self):
         '''to_roman should fail with negative input'''
         self.assertRaises(roman_numbers.OutOfRangeError, roman_numbers.to_roman, -1)
+
+    def test_not_integer(self):
+        '''to_roman should fail with non-integer input'''
+        self.assertRaises(roman_numbers.NotIntegerError, roman_numbers.to_roman, 0.5)
+
 
 if __name__ == '__main__':
     unittest.main()
