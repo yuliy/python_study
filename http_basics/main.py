@@ -10,7 +10,11 @@ HTTPConnection.debuglevel = 1
 
 def main():
     response = urlopen('http://yuliy.me')
+
     print( response.headers.as_string() )
+
+    data = response.read()
+    print( len(data) )
 
 
 if __name__ == '__main__':
