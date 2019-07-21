@@ -8,6 +8,7 @@ def print_response(response, content):
     print( F'status: {response.status}' )
     print( F'content len: {len(content)}' )
     print( F'cached: {response.fromcache}' )
+    print( F'headers: {response.items()}' )
 
 
 def main():
