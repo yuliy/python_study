@@ -73,11 +73,19 @@ def decorated_function_with_arguments(function_arg1, function_arg2):
     print ("Я - декорируемая функция и я знаю только о своих аргументах: {0}"
            " {1}".format(function_arg1, function_arg2))
 
+def print_separator():
+    print('===================================')
+
 
 def main():
+    print_separator()
     sandwich()
+
+    print_separator()
     print_full_name("Sam", "Smith")
-	decorated_function_with_arguments("Раджеш", "Говард")
+
+    print_separator()
+    decorated_function_with_arguments("Раджеш", "Говард")
 
 
 if __name__ == '__main__':
