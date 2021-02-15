@@ -1,6 +1,9 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
+from functools import wraps
+
+
 """
 Simple decorators
 """
@@ -37,6 +40,7 @@ def a_decorator_passing_arguments(function_to_decorate):
         function_to_decorate(arg1, arg2)
     return a_wrapper_accepting_arguments
 
+
 @a_decorator_passing_arguments
 def print_full_name(first_name, last_name):
     print "My name is", first_name, last_name
@@ -68,10 +72,34 @@ def decorator_maker_with_arguments(decorator_arg1, decorator_arg2):
 
     return my_decorator
 
+
 @decorator_maker_with_arguments("Леонард", "Шелдон")
 def decorated_function_with_arguments(function_arg1, function_arg2):
     print ("Я - декорируемая функция и я знаю только о своих аргументах: {0}"
            " {1}".format(function_arg1, function_arg2))
+
+
+"""
+My test
+"""
+
+def my_decorator(a=None, b=None):
+    def decorator(f):
+        @wraps(f)
+        def wrapper(*args, **kwargs):
+            print('this is my_decorator')
+            print("(a, b): (%s, %s)" % (a, b))
+            #print("args: %s" % *args)
+            #print("kwargs: %s" % **kwargs)
+            f()
+        return wrapper
+    #return decorator if func is None else decorator(func)
+    return decorator
+
+@my_decorator(a=1, b='hello')
+def foo():
+    print('foo')
+
 
 def print_separator():
     print('===================================')
@@ -86,6 +114,9 @@ def main():
 
     print_separator()
     decorated_function_with_arguments("Раджеш", "Говард")
+
+    print_separator()
+    foo()
 
 
 if __name__ == '__main__':
